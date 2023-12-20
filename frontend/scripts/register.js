@@ -1,7 +1,7 @@
 const formEl = document.querySelector('form');
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
-const backendServerURL = 'http://localhost:8008/'
+const backendServerURL = 'https://todo-app-6jzm.onrender.com/'
 
 formEl.addEventListener('submit', (evnt)=>{
     evnt.preventDefault();

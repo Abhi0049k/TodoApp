@@ -2,7 +2,7 @@ const token = localStorage.getItem('token');
 const taskEl = document.querySelector('#task');
 const formEl = document.querySelector('#addTodo');
 const containerEl = document.querySelector('.todoContainer');
-const backendServerURL = 'http://localhost:8008/';
+const backendServerURL = 'https://todo-app-6jzm.onrender.com/';
 
 const logoutfn = async()=>{
     localStorage.removeItem('token');
