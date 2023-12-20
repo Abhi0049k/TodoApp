@@ -22,7 +22,7 @@ const signin = async(obj)=>{
             res = await res.json();
             localStorage.setItem('token', res.token);
             alert('Sign in Successful');
-            window.location.href = '/frontend/main.html'
+            window.location.href = 'https://heartfelt-gumption-cce232.netlify.app/main.html';
         }
     }catch(err){
         console.log(err);

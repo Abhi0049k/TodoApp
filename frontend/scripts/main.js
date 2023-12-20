@@ -6,7 +6,7 @@ const backendServerURL = 'https://todo-app-6jzm.onrender.com/';
 
 const logoutfn = async()=>{
     localStorage.removeItem('token');
-    window.location.href = '/frontend/index.html';
+    window.location.href = 'https://heartfelt-gumption-cce232.netlify.app/index.html';
 }
 
 formEl.addEventListener('submit', (evnt)=>{

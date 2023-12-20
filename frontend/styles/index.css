@@ -15,6 +15,7 @@ body{
     border: 1px solid black;
     padding: 1rem;
     display: flex;
+    gap: 8px;
     flex-direction: column;
 }
 
@@ -33,14 +34,17 @@ form{
 input{
     height: 2.4rem;
     width: 18rem;
+    padding: 0 12px;
+    box-sizing: border-box;
 }
 
 input[type='submit']{
-    width: 18.2rem;
+    font-size: large;
 }
 
 .container div{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
 }

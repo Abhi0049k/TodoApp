@@ -21,7 +21,7 @@ const signup = async(obj)=>{
         if(res.ok){
             res = await res.json();
             alert('Sign up Successful');
-            window.location.href='/frontend/index.html';
+            window.location.href = 'https://heartfelt-gumption-cce232.netlify.app/index.html';
         }
     }catch(err){
         console.log(err);
