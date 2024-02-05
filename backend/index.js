@@ -43,7 +43,7 @@ const validatingUser = (obj) => {
     return response;
 }
 
-const validatingTask = (obj)=>{
+const validatingTask = (obj) => {
     const schema = zod.object({
         task: zod.string()
     })
@@ -54,7 +54,9 @@ const validatingTask = (obj)=>{
 app.post('/signup', async (req, res, next) => {
     let { email, password } = req.body;
     try {
+        console.log("email: ", email, password);
         const check = validatingUser({ email, password });
+        console.log(check);
         if (!check.success) return next({ status: 422, msg: 'Invalid Input' });
         const userExists = await user.find({ email });
         if (userExists.length > 0) return next({ status: 409, msg: 'User Already Exists' })
@@ -70,10 +72,11 @@ app.post('/signup', async (req, res, next) => {
 app.post('/signin', async (req, res, next) => {
     let { email, password } = req.body;
     try {
+        console.log('email: ', email, password);
         const check = validatingUser({ email, password });
         if (!check.success) return next({ status: 422, msg: 'Invalid Input' });
         const userDetails = await user.findOne({ email });
-        if(!userDetails) return next({status: 404, msg: "User Doesn't Exist"});
+        if (!userDetails) return next({ status: 404, msg: "User Doesn't Exist" });
         const result = await bcrypt.compare(password, userDetails.password);
         if (!result) return next({ status: 404, msg: 'User Not Found' });
         const token = jwt.sign({ email: userDetails.email }, process.env.JWT_PASSWORD);
@@ -90,6 +93,7 @@ app.use((req, res, next) => {
         req.body.email = decode.email;
         next();
     } catch (err) {
+        console.log(err);
         res.status(404).send({ msg: err.message });
     }
 })
@@ -97,49 +101,49 @@ app.use((req, res, next) => {
 app.get('/', async (req, res, next) => {
     try {
         const { email } = req.body;
-        const tasklist = await todo.find({email});
+        const tasklist = await todo.find({ email });
         res.status(200).send(tasklist);
     } catch (err) {
         next({ msg: err.message, status: 401 });
     }
 })
 
-app.post('/', async (req, res, next)=>{
-    const {task, email} = req.body;
-    try{
-        const check = validatingTask({task});
-        if(!check.success) return next({status: 422, msg: 'Invalid Input'});
-        const newTodo = new todo({task, status: false, email});
+app.post('/', async (req, res, next) => {
+    const { task, email } = req.body;
+    try {
+        const check = validatingTask({ task });
+        if (!check.success) return next({ status: 422, msg: 'Invalid Input' });
+        const newTodo = new todo({ task, status: false, email });
         await newTodo.save();
-        res.status(201).send({msg: 'New Todo Added'});
-    }catch(err){
-        next({msg: err.message});
+        res.status(201).send({ msg: 'New Todo Added' });
+    } catch (err) {
+        next({ msg: err.message });
     }
 })
 
-app.patch('/:id', async (req, res, next)=>{
-    const {id} = req.params;
-    const {email} = req.body;
-    try{
-        const taskItem = await todo.findOne({_id: id, email});
-        if(!taskItem) return next({msg: 'You are not Authorized', status: 403});
-        await todo.findOneAndUpdate({email, _id: id}, {status: !taskItem.status});
-        res.status(200).send({msg: 'Task Updated'});
-    }catch(err){
-        next({msg: err.message});
+app.patch('/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const { email } = req.body;
+    try {
+        const taskItem = await todo.findOne({ _id: id, email });
+        if (!taskItem) return next({ msg: 'You are not Authorized', status: 403 });
+        await todo.findOneAndUpdate({ email, _id: id }, { status: !taskItem.status });
+        res.status(200).send({ msg: 'Task Updated' });
+    } catch (err) {
+        next({ msg: err.message });
     }
 })
 
-app.delete('/:id', async(req, res, next)=>{
-    const{id} = req.params;
-    const {email} = req.body;
-    try{
-        const taskItem = await todo.findOne({_id: id, email});
-        if(!taskItem) return next({msg: 'You are not Authorized', status: 403});
+app.delete('/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const { email } = req.body;
+    try {
+        const taskItem = await todo.findOne({ _id: id, email });
+        if (!taskItem) return next({ msg: 'You are not Authorized', status: 403 });
         await todo.findByIdAndDelete(id);
-        res.status(200).send({msg: 'Task Deleted'})
-    }catch(err){
-        next({msg: err.message});
+        res.status(200).send({ msg: 'Task Deleted' })
+    } catch (err) {
+        next({ msg: err.message });
     }
 })
 
