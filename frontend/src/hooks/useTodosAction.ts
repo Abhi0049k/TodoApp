@@ -10,9 +10,8 @@ const useTodosAction = () => {
     const setChangeList = useSetRecoilState(changeListAtom);
 
     const updateTodo = useCallback(async (id: string) => {
-        console.log(id)
         try {
-            await axios.patch(`${backendServerUrl}${id}`, {}, {
+            await axios.patch(`${backendServerUrl}todo/${id}`, {}, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token
@@ -26,7 +25,7 @@ const useTodosAction = () => {
 
     const deleteTodo = useCallback(async (id: string) => {
         try {
-            await axios.delete(`${backendServerUrl}${id}`, {
+            await axios.delete(`${backendServerUrl}todo/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token

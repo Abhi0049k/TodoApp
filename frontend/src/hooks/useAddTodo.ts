@@ -20,8 +20,7 @@ const useAddTodo = () => {
         event.preventDefault();
         setLoading(() => true);
         try {
-            console.log({ todo })
-            await axios.post(`${backendServerUrl}`, { task: todo }, {
+            await axios.post(`${backendServerUrl}todo`, { task: todo }, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: token

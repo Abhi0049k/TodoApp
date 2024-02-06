@@ -5,7 +5,6 @@ import TodoCard from "./TodoCard";
 
 const TodoList: FC = () => {
     const { todo, loading } = useTodoLists();
-    console.log(todo);
     return (
         <div className="w-[70%] h-full border rounded p-5 overflow-y-auto">
             {
@@ -13,7 +12,7 @@ const TodoList: FC = () => {
                     ? <Loading />
                     : (
                         <div className="flex gap-5 flex-col">
-                            {todo?.map((el) => <TodoCard key={el._id} _id={el._id} status={el.status} task={el.task} />)}
+                            {todo?.map((el) => <TodoCard key={el.id} id={el.id} status={el.status} task={el.task} />)}
                         </div>
                     )
             }

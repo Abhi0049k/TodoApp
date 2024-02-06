@@ -15,15 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = require("dotenv");
 const cors_1 = __importDefault(require("cors"));
+const user_routes_1 = __importDefault(require("./routes/user.routes"));
+const authorization_middleware_1 = __importDefault(require("./middlewares/authorization.middleware"));
+const todo_routes_1 = __importDefault(require("./routes/todo.routes"));
 (0, dotenv_1.config)();
 const PORT = Number(process.env.PORT);
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).send({ message: "Welcome to backend for Todo Application" });
+app.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).send({ message: "Welcome to backend of the Todo Application" });
 }));
-app.use('/*', (req, res, next) => {
+app.use("/user", user_routes_1.default);
+app.use(authorization_middleware_1.default);
+app.use("/todo", todo_routes_1.default);
+app.use("/*", (req, res, next) => {
     next({ status: 404, message: 'Page not found' });
 });
 const errorHandler = (err, req, res, next) => {

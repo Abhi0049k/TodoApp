@@ -15,12 +15,11 @@ const useTodoLists = () => {
     const fetchTodo = useCallback(async () => {
         setLoading(() => true);
         try {
-            const res = await axios.get(`${backendServerUrl}`, {
+            const res = await axios.get(`${backendServerUrl}todo`, {
                 headers: {
                     'Authorization': `${token}`
                 }
             })
-            console.log(res);
             setTodo(() => res.data)
         } catch (err) {
             console.log(err);

@@ -19,14 +19,14 @@ export interface childrenPropI {
 }
 
 export interface todoI {
-    _id: string;
+    id: string;
     task: string;
     status: boolean;
     email: string;
 }
 
 export interface todoPropI {
-    _id: string;
+    id: string;
     task: string;
     status: boolean;
 }
