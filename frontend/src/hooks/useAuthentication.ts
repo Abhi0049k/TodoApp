@@ -29,11 +29,11 @@ const useAuthentication = (action: string) => {
         setLoading(() => true)
         try {
             if (action === Action.signin) {
-                const res: AxiosResponse = await axios.post(`${backendServerUrl}${Action.signin}`, credentials);
+                const res: AxiosResponse = await axios.post(`${backendServerUrl}user/${Action.signin}`, credentials);
                 setToken(() => res.data?.token)
                 navigate('/');
             } else {
-                await axios.post(`${backendServerUrl}${Action.signup}`, credentials);
+                await axios.post(`${backendServerUrl}user/${Action.signup}`, credentials);
                 navigate('/login');
             }
         } catch (err) {
