@@ -1,21 +1,21 @@
 # Todo App
 
-# Tech Stack
-- HTML
-- CSS
-- JavaScript
-- Nodejs
-- MongoDB
-- Zod
+## Tech Stack
+- React.js
+- Express.js
+- Typescript
+- Node.js
+- Prisma
+- PostgreSQL
 
-
-# Main Features of the Application
-
-- Input Validation Using Zod
-- Using MongoDB as Database
+## Features
+- Create Todos
+- Update Status
+- Delete Todos
+- Read all Todos
 - User Authentication
-- Global Catches
 
-### Backend URL: https://todo-app-6jzm.onrender.com
 
-### Frontend URL: https://heartfelt-gumption-cce232.netlify.app';
+### [Backend URL](https://todo-app-msy0.onrender.com/)
+
+### [Frontend URL](https://heartfelt-gumption-cce232.netlify.app/)
