@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "build": "tsc -b",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migrate:dev": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "Mangalam Kumar",
