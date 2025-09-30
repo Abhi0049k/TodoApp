@@ -7,38 +7,33 @@ Your help is greatly appreciated, whether you’re fixing bugs, improving docume
 
 1. **Fork the repository** to your own GitHub account.
 2. **Clone your fork** locally:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/<your-username>/TodoApp.git
-   \`\`\`
+   ```
 3. **Install dependencies**:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 4. **Create a new branch** for your feature or bugfix:
-   \`\`\`bash
+   ```bash
    git checkout -b my-feature-branch
-   \`\`\`
+   ```
 
 ## Development Guidelines
 
 - **Code Style**: Follow existing code style and conventions. Most code is in TypeScript.
-- **Linting**: Run \`npm run lint\` to check for lint errors before submitting a PR.
-- **Testing**: Add or update tests as needed. Run tests with:
-  \`\`\`bash
-  npm test
-  \`\`\`
 - **Commits**: Use clear, descriptive commit messages.
 
 ## Pull Request Process
 
-1. Ensure your branch is up to date with \`main\`.
-2. Open a pull request (PR) from your branch to \`main\`.
+1. Ensure your branch is up to date with `main`.
+2. Open a pull request (PR) from your branch to `main`.
 3. Fill out the PR template (if available) and describe your changes clearly.
 4. Link any related issues in your PR description.
 
 ## Code of Conduct
 
-Please be respectful and considerate in all interactions. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for details.
+Please be respectful and considerate in all interactions.
 
 ## Reporting Issues
 
