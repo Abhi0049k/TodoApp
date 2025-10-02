@@ -36,8 +36,11 @@ const useAuthentication = (action: string) => {
                 await axios.post(`${backendServerUrl}user/${Action.signup}`, credentials);
                 navigate('/login');
             }
-        } catch (err) {
-            console.log(err);
+        } catch (err: any) {
+            const input = err?.response?.data?.Error;
+
+            alert(`${input}: cause due to incorrect email or password(password length > 7 character)`);
+
         } finally {
             setLoading(() => false);
         }
