@@ -8,9 +8,11 @@ import { Request, Response, NextFunction } from "express";
 export const signin = async (req: Request, res: Response, next: NextFunction) => {
     const JWT_SECRET_KEY: string = process.env.JWT_PASSWORD ?? "";
     const { email, password }: userCredentialsI = req.body;
+    // console.log("Signin request received with email:", email, password, JWT_SECRET_KEY);
     try {
         const check = validatingUserCredentials({ email, password });
-        if (!check.success) return next({ status: 422, message: "Invalid Input" });
+        // console.log("Line no. 14", check)
+        if (!check.success) return next({ status: 422, message: check.message, input_field: check.path });
         const userDetails = await prisma.user.findUnique({ where: { email } });
         if (!userDetails) return next({ status: 404, message: "User Doesn't Exist" });
         const result = await bcrypt.compare(password, userDetails.password);
@@ -18,6 +20,7 @@ export const signin = async (req: Request, res: Response, next: NextFunction) =>
         const token: string = jwt.sign({ email: userDetails.email }, JWT_SECRET_KEY);
         res.status(200).send({ message: "Login Successful", token });
     } catch (err) {
+        console.log("Error in signin controller:", err);
         next(err);
     }
 }
