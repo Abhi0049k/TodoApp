@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Action, CredentialsI } from "shared/types";
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useSetRecoilState } from "recoil";
 import { tokenAtom } from "store/TokenAtom";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +12,10 @@ const initialState: CredentialsI = {
     password: "",
 }
 
-interface ErrorResponse {
-    Error?: string;
-    message?: string;
-}
+// interface ErrorResponse {
+//     Error?: string;
+//     message?: string;
+// }
 
 const useAuthentication = (action: string) => {
     const [credentials, setCredentials] = useState<CredentialsI>(initialState);
@@ -36,7 +36,7 @@ const useAuthentication = (action: string) => {
         event.preventDefault();
         setError("");
         setLoading(true);
-        
+
         try {
             if (action === Action.signin) {
                 const res: AxiosResponse = await axios.post(`${backendServerUrl}user/${Action.signin}`, credentials);
@@ -48,10 +48,10 @@ const useAuthentication = (action: string) => {
             }
         } catch (err: any) {
             let errorMessage = "Something went wrong. Please try again.";
-            
+
             if (err?.response?.data?.Error) {
                 const backendError = err.response.data.Error;
-                
+
                 // Customize error messages based on backend response
                 if (backendError === "Invalid Input") {
                     if (action === Action.signup) {
@@ -73,7 +73,7 @@ const useAuthentication = (action: string) => {
             } else if (!err?.response) {
                 errorMessage = "Unable to connect to server. Please check your connection.";
             }
-            
+
             setError(errorMessage);
         } finally {
             setLoading(false);
