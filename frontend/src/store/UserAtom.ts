@@ -1,9 +1,5 @@
 import { atom } from "recoil";
-
-interface UserInfo {
-  name: string;
-  email: string;
-}
+import {UserInfo} from '../shared/types'
 
 export const userAtom = atom<UserInfo | null>({
   key: "userAtom",
