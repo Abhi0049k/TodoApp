@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Action, ActionI } from "shared/types";
 
 const Authentication: FC<ActionI> = ({ action }) => {
-    const { credentials, handleChange, handleSubmit, loading } = useAuthentication(action);
+    const { credentials, handleChange, handleSubmit, loading, error } = useAuthentication(action);
     useEffect(() => {
         if (action === Action.signin)
             document.title = "Todo App | Login"
@@ -17,6 +17,11 @@ const Authentication: FC<ActionI> = ({ action }) => {
         <div className="flex bg-slate-200 h-screen w-full justify-center items-center">
             <div className="bg-white rounded-md shadow-md p-8 h-fit">
                 <h2 className="text-2xl font-semibold mb-4 text-gray-800">{action === Action.signin ? "Login" : "Register"}</h2>
+                {error && (
+                    <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md text-sm">
+                        {error}
+                    </div>
+                )}
                 <form className="w-96 flex flex-col"
                     onSubmit={handleSubmit}
                 >

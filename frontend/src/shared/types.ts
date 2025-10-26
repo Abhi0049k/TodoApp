@@ -30,3 +30,8 @@ export interface todoPropI {
     task: string;
     status: boolean;
 }
+
+export interface UserInfo {
+  name: string;
+  email: string;
+}
