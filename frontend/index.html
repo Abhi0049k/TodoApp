@@ -3,7 +3,21 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+  <script>
+    // Initial theme script to prevent FOUC - DEFAULT IS LIGHT
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        // Default to light mode, remove dark class if present
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>

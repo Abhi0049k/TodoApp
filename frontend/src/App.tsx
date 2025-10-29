@@ -8,7 +8,9 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <RecoilRoot>
-        <Router />
+        <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200">
+          <Router />
+        </div>
       </RecoilRoot>
     </BrowserRouter>
   )
