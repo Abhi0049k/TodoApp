@@ -4,28 +4,33 @@ export const useTheme = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    // Default is light, only apply dark if explicitly saved
-    const savedTheme = localStorage.getItem('theme');
+    // Get saved theme from localStorage, default to light
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    
     if (savedTheme === 'dark') {
       setTheme('dark');
+      document.documentElement.classList.add('dark');
     } else {
+      // Default to light theme and ensure dark class is removed
       setTheme('light');
+      document.documentElement.classList.remove('dark');
+      // Set light as default in localStorage if not set
+      if (!savedTheme) {
+        localStorage.setItem('theme', 'light');
+      }
     }
   }, []);
 
   const toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains('dark');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     
-    if (isDark) {
-      // Currently dark, switch to light
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setTheme('light');
-    } else {
-      // Currently light, switch to dark
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setTheme('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   };
 
