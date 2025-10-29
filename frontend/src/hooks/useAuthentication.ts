@@ -53,7 +53,11 @@ const initialState: CredentialsI = {
             `${backendServerUrl}user/${Action.signin}`,
             credentials
           );
-          setToken(res.data?.token);
+          
+          // Store token in both Recoil state and localStorage
+          const token = res.data?.token;
+          setToken(token);
+          localStorage.setItem("token", token);
 
           //   saved user name to localStorage
           if (res.data?.user) {
