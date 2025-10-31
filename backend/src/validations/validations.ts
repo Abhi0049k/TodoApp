@@ -15,9 +15,10 @@ export const validatingUserCredentials = (obj: userCredentialsI) => {
     }
 }
 
-export const validationTaskCredentials = (obj: { task: string }) => {
+export const validationTaskCredentials = (obj: { task: string; description?: string }) => {
     const schema = zod.object({
-        task: zod.string()
+        task: zod.string(),
+        description: zod.string().optional(),
     })
     const response = schema.safeParse(obj);
     return response

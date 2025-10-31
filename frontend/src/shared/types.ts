@@ -23,12 +23,15 @@ export interface todoI {
     task: string;
     status: boolean;
     email: string;
+    description: string;
 }
 
 export interface todoPropI {
     id: string;
     task: string;
     status: boolean;
+    email : string;
+    description?: string;
 }
 
 export interface UserInfo {
