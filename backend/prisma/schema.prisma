@@ -18,9 +18,11 @@ model User {
 }
 
 model Todo {
-  id     String  @id @default(uuid())
-  task   String
-  status Boolean @default(false)
-  user   User    @relation(fields: [email], references: [email])
-  email  String
+  id          String  @id @default(uuid())
+  task        String
+  description String
+  status      Boolean @default(false)
+  createdAt   DateTime? @default(now())
+  user        User    @relation(fields: [email], references: [email])
+  email       String
 }
