@@ -26,9 +26,7 @@ const App: FC = () => {
     <BrowserRouter>
       <RecoilRoot>
         <AuthInitializer />
-        <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200">
           <Router />
-        </div>
       </RecoilRoot>
     </BrowserRouter>
   )
