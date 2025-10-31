@@ -88,28 +88,29 @@ export const getTodo = async (req: Request, res: Response, next: NextFunction) =
 };
 
 // Create a new todo
-export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
-    const { task, description, email } = req.body;
+// export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
+//     const { task, description, email } = req.body;
 
-    if (!task) return next({ message: "Task is required", status: 422 });
+//     if (!task) return next({ message: "Task is required", status: 422 });
 
-    try {
-        const check = validationTaskCredentials({ task, description});
-        if (!check.success) return next({ status: 422, message: "Invalid Input" });
+//     try {
+//         const check = validationTaskCredentials({ task, description});
+//         if (!check.success) return next({ status: 422, message: "Invalid Input" });
 
-        const newTodo = await prisma.todo.create({
-            data: {
-                task,
-                description: description ?? "",
-                email,
-            },
-        });
+//         const newTodo = await prisma.todo.create({
+//             data: {
+//                 task,
+//                 description: description ?? "",
+//                 email,
+//             },
+//         });
 
-        res.status(201).json({ message: "New Todo Added", todo: newTodo });
-    } catch (err) {
-        next(err);
-    }
-};
+//         res.status(201).json({ message: "New Todo Added", todo: newTodo });
+//     } catch (err) {
+//         next(err);
+//     }
+// };
+
 
 // Edit todo (task/description)
 export const editTodo = async (req: Request, res: Response, next: NextFunction) => {

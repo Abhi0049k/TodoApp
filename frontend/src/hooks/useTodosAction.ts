@@ -37,7 +37,29 @@ const useTodosAction = () => {
         }
     }, [token, setChangeList])
 
-    return { updateTodo, deleteTodo }
+
+    const editTodo = useCallback(
+    async (id: string, updatedData: { task?: string; description?: string; email: string }) => {
+      try {
+        await axios.put(
+          `${backendServerUrl}todo/${id}`,
+          updatedData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+          }
+        );
+        setChangeList((prev) => !prev);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [token, setChangeList]
+  );
+    
+    return { updateTodo, deleteTodo, editTodo }
 }
 
 export default useTodosAction

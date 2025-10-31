@@ -21,10 +21,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
     "paths": {
-      "*": [
-        "./src/*"
-      ]
+      "@/*": ["*"],
+      "hooks/*": ["hooks/*"],
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "shared/*": ["shared/*"],
+      "store/*": ["store/*"]
     }
   },
   "include": [
