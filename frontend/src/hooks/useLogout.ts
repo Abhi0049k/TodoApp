@@ -10,9 +10,13 @@ const useLogout = () => {
     const resetUser = useResetRecoilState(userAtom);
 
     const handleLogout = useCallback(() => {
-        setToken(() => "");
+        // Clear token from Recoil state
+        setToken("");
+        // Clear user data from Recoil state
         resetUser();
-        localStorage.clear();
+        // Clear token from localStorage
+        localStorage.removeItem("token");
+        // Navigate to login page
         navigate("/login");
     }, [setToken, resetUser, navigate])
 
