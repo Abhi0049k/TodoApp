@@ -1,4 +1,4 @@
-# Todo App
+# TodoApp
 
 ## Tech Stack
 - React.js
